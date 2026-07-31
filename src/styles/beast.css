@@ -1,0 +1,46 @@
+/* ==========================
+   Beast Cursor Canvas
+========================== */
+
+.beast-canvas {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 9999;
+}
+
+/* Hide default cursor */
+
+body {
+  cursor: none;
+}
+
+/* Optional selection color */
+
+::selection {
+  background: #74d802;
+  color: #000;
+}
+
+/* Performance */
+
+.beast-canvas {
+  will-change: transform;
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+  .beast-canvas{
+
+    display:none;
+
+  }
+
+}

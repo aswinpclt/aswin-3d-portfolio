@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import BeastCursor from "./components/BeastCursor";
 import Contact from "./sections/Contact";
 import ExperienceSection from "./sections/ExperienceSection";
 import FeatureCards from "./sections/FeatureCards ";
@@ -7,7 +8,7 @@ import Hero from "./sections/Hero";
 import Navbar from "./sections/Navbar";
 import ShowcaseSection from "./sections/ShowcaseSection";
 import TachStack from "./sections/TechStack";
-import GameSection from "./sections/GameSection"; // 👈 NEW
+import GameSection from "./sections/GameSection";
 import ProjectDetail from "./components/projectDetails/ProjectDetail";
 import { projects } from "./data/projects";
 
@@ -18,24 +19,33 @@ function App() {
         path="/"
         element={
           <main className="bg-black text-white">
+
+            <BeastCursor />
+
             <Navbar />
 
             <Hero />
 
-            <ShowcaseSection />
-
+            {/* About */}
             <FeatureCards />
 
+            {/* Experience */}
             <ExperienceSection />
 
+            {/* Projects */}
+            <ShowcaseSection />
+
+            {/* Skills */}
             <TachStack />
 
-            {/* 🎮 Mini Snake Game */}
-            <GameSection />
-
+            {/* Contact */}
             <Contact />
 
+            {/* Mini Game (LAST) */}
+            <GameSection />
+
             <Footer />
+
           </main>
         }
       />
