@@ -5,13 +5,11 @@ import { useGSAP } from "@gsap/react";
 import TitleHeader from "../components/TitleHeader";
 import ProjectLinks from "../components/ProjectLinks";
 import "../styles/holographic-cards.css";
-import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ShowcaseSection = () => {
   const sectionRef = useRef(null);
-  const navigate = useNavigate();
 
   useGSAP(() => {
     gsap.fromTo(
