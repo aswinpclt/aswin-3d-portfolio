@@ -5,6 +5,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,8 +23,20 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // Close the mobile menu whenever the user scrolls (feels broken otherwise)
+  useEffect(() => {
+    if (!menuOpen) return;
+    const close = () => setMenuOpen(false);
+    window.addEventListener("scroll", close);
+    return () => window.removeEventListener("scroll", close);
+  }, [menuOpen]);
+
   return (
-    <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"} md:translate-y-0 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"}`}>
+    <header
+      className={`navbar ${scrolled ? "scrolled" : "not-scrolled"} md:translate-y-0 transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="inner">
         <a href="#hero" className="logo">
           Aswin | P
@@ -47,7 +60,33 @@ const Navbar = () => {
             <span>Contact me</span>
           </div>
         </a>
+
+        {/* Hamburger — only visible below lg */}
+        <button
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          className="hamburger"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          <span className={menuOpen ? "open" : ""} />
+          <span className={menuOpen ? "open" : ""} />
+          <span className={menuOpen ? "open" : ""} />
+        </button>
       </div>
+
+      {/* Mobile dropdown menu */}
+      <nav className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+        <ul>
+          {navLinks.map(({ link, name }) => (
+            <li key={name}>
+              <a href={link} onClick={() => setMenuOpen(false)}>
+                {name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 };

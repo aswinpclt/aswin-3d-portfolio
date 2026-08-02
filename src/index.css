@@ -171,6 +171,46 @@ section {
     }
   }
 
+
+
+
+
+
+  /* Hamburger button — hidden on desktop */
+    .hamburger {
+      @apply flex lg:hidden flex-col justify-center items-center gap-1.5 w-8 h-8 z-50;
+
+      span {
+        @apply block w-6 h-0.5 bg-white transition-all duration-300 rounded-full;
+
+        &.open:nth-child(1) {
+          @apply translate-y-2 rotate-45;
+        }
+        &.open:nth-child(2) {
+          @apply opacity-0;
+        }
+        &.open:nth-child(3) {
+          @apply -translate-y-2 -rotate-45;
+        }
+      }
+    }
+
+    /* Mobile dropdown panel */
+    .mobile-menu {
+      @apply lg:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out;
+
+      &.open {
+        @apply max-h-96 mt-4;
+      }
+
+      ul {
+        @apply flex flex-col gap-4 px-5 pb-5;
+
+        li a {
+          @apply text-white-50 text-lg block py-1 hover:text-white transition-colors duration-300;
+        }
+      }
+    }
   .app-showcase {
     @apply w-full   mt-20 px-5 md:px-20 py-10 md:py-20 flex items-center justify-center;
 
